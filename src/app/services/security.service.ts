@@ -21,6 +21,7 @@ export class SecurityService {
     }
 
     lock() {
+        this.logger.debug('Verrouillage de l\'application');
         this.token = '';
         SecurityService.APP_STORAGE.removeItem(SecurityService.STORAGE_TOKEN_KEY);
         this.router.navigate(['login']);

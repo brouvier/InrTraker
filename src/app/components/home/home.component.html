@@ -1,5 +1,3 @@
-<h1>INR Traker</h1>
-
 <h2>Médicament</h2>
 
 <div class="row">
@@ -39,8 +37,9 @@
 <div echarts [options]="inrGraphOptions" [merge]= "inrGraphUpdateOptions" class="demo-chart"></div>
 
 <div class="text-end" style="width: 100%;">
-    <a class="btn btn-secondary" [routerLink]="['/measure-list']" title="Voir la liste des mesures"><i
-            class="material-icons">reorder</i></a>
+    <a class="btn btn-secondary" [routerLink]="['/measure-list']" title="Voir la liste des mesures">
+        <i class="material-icons">reorder</i>
+    </a>
 </div>
 
 <div *ngIf="!production">

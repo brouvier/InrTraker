@@ -1,0 +1,15 @@
+<nav class="navbar navbar-dark fixed-top p-0">
+    <a class="navbar-brand h1 ms-2 d-flex align-items-center" routerLink="home">
+        <img src="./assets/pill.png" class="me-1" style="width: 40px; height: auto; vertical-align: top">
+        <span class="align-top">INR Traker</span>
+    </a>
+    <button type="button" class="btn btn-outline-danger m-2" *ngIf="isUnlock()">
+        <i class="material-icons text-white" (click)="lock()">lock</i>
+    </button>
+</nav>
+
+<main>
+    <div class="container p-3">
+        <router-outlet></router-outlet>
+    </div>
+</main>
