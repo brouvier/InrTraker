@@ -1,0 +1,21 @@
+<div class="modal fade" id="editIntakeModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Edition</h5>
+            </div>
+            <div class="modal-body">
+                <input id="intake" name="intake" type="text" class="form-control" [(ngModel)]="modalIntake.intake"
+                    [ngModelOptions]="{standalone: true}" autofocus />
+                <div class="alert alert-danger" role="alert" *ngIf="!intakeMatch()">La date doit être au format
+                    "yyyy-MM-dd hh:mi:ss"</div>
+                <pre *ngIf="!production">{{modalIntake | json}}</pre>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                <button type="button" class="btn btn-primary" *ngIf="intakeMatch()" (click)="save()">Modifier</button>
+            </div>
+        </div>
+    </div>
+</div>
+

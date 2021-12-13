@@ -1,0 +1,32 @@
+<h1>Liste des prises de {{currentDrug.label}}</h1>
+
+<table class="table table-sm table-hover">
+    <thead class="">
+        <tr>
+            <th>Date</th>
+            <th class="text-end">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let intake of currentDrugIntakes">
+            <td>{{intake.intake}}</td>
+            <td class="text-end">
+                <div class="btn-group" role="group">
+                    <button type="button" class="btn btn-primary" title="Modifier"
+                        data-bs-toggle="modal" data-bs-target="#editIntakeModal"
+                        (click)="editIntake(intake)">
+                        <i class="material-icons">edit</i>
+                    </button>
+                    <button type="button" class="btn btn-danger" title="Supprimer"
+                        (click)="removeIntake(intake)">
+                        <i class="material-icons">delete</i>
+                    </button>
+                </div>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<a class="btn btn-light" [routerLink]="['/home']" title="Retour à l'accueil"><i class="material-icons">arrow_back</i></a>
+
+<app-modal-edit-intake></app-modal-edit-intake>

@@ -1,0 +1,13 @@
+{
+    "name": "INR Traker",
+    "short_name": "INR",
+    "start_url": "../",
+    "display": "standalone",
+    "background_color": "#fff",
+    "description": "Application de suivi de l'INR.",
+    "icons": [
+      {
+        "src": "pill.png",
+        "sizes": "150x150"
+      }]
+  }
