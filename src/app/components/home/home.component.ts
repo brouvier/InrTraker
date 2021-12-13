@@ -18,7 +18,8 @@ export class HomeComponent implements OnInit, OnDestroy {
   lastIntakesSub: Subscription | undefined;
   inrMeasuresSub: Subscription | undefined;
   lastIntakes: LastDrugIntake[] = [];
-  dt = formatDateTime(new Date());
+  currentDt = new Date();
+  formatedCurrentDt = formatDateTime(new Date());
 
   constructor(private logger: LogService, private drugs: DrugService, private inr: INRService) { }
 
@@ -38,11 +39,22 @@ export class HomeComponent implements OnInit, OnDestroy {
     return addHours(dIntake.lastIntake!, dIntake.maxFrequency);
   }
 
+  nextIntakeProgress(dIntake: LastDrugIntake): string {
+    var pct = 0;
+
+    if (dIntake.lastIntake != null){
+      const d = new Date(dIntake.lastIntake);
+      pct = Math.round((this.currentDt.getTime() - d.getTime()) / (dIntake.maxFrequency*60*60*1000) * 100);
+    }
+    return "width: ".concat(pct.toString()).concat('%');
+  }
+
   addIntake(drugId: number) {
     this.drugs.addDrugIntake(drugId);
   }
 
-  /* Chart https://echarts.apache.org/en/index.html https://xieziyu.github.io/ngx-echarts/#/welcome */
+  /* ********************************* Chart ************************************************ *
+   * https://echarts.apache.org/en/index.html https://xieziyu.github.io/ngx-echarts/#/welcome */
 
   public inrGraphUpdateOptions: any;
 
