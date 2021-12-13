@@ -16,6 +16,7 @@ import { INRService } from './services/inr.service';
 import { MeasureListComponent } from './components/measure-list/measure-list.component';
 import { NgxEchartsModule } from 'ngx-echarts';
 import * as echarts from 'echarts';
+import { ModalEditInrComponent } from './components/modal-edit-inr/modal-edit-inr.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import * as echarts from 'echarts';
     HomeComponent,
     IntakeListComponent,
     ModalEditIntakeComponent,
-    MeasureListComponent
+    MeasureListComponent,
+    ModalEditInrComponent
   ],
   imports: [
     BrowserModule,

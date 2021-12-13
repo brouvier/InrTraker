@@ -1,0 +1,39 @@
+<div class="modal fade" id="editInrModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Edition</h5>
+            </div>
+            <div class="modal-body">
+
+                <div class="form-floating mb-3">
+                    <input id="measureDate" type="text" class="form-control"
+                    [(ngModel)]="modalInrMeasure.measureDate" [ngModelOptions]="{standalone: true}" autofocus />
+                    <label for="measureDate">Date</label>
+                </div>
+                <div class="alert alert-danger" role="alert" *ngIf="!checkDate()">
+                    La date doit être au format "yyyy-MM-dd"
+                </div>
+
+                <div class="form-floating mb-3">
+                    <input id="inr" type="number" class="form-control"
+                    [(ngModel)]="modalInrMeasure.inr" [ngModelOptions]="{standalone: true}" />
+                    <label for="inr">INR</label>
+                </div>
+
+                <div class="form-floating mb-3">
+                    <input id="comment" type="text" class="form-control"
+                    [(ngModel)]="modalInrMeasure.comment" [ngModelOptions]="{standalone: true}" />
+                    <label for="comment">Date</label>
+                </div>
+
+                <pre *ngIf="!production">{{modalInrMeasure | json}}</pre>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                <button type="button" class="btn btn-primary" *ngIf="checkDate()" (click)="save()">Modifier</button>
+            </div>
+        </div>
+    </div>
+</div>

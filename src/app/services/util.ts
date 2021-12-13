@@ -15,3 +15,11 @@ export function addHours(dt: string, h: number): string {
     d.setTime(d.getTime() + (h*60*60*1000));
     return formatDateTime(d);
 }
+
+export function dateMatch(dt: string) {
+  return dt.match('20[0-9]{2}-[0-1][0-9]-[0-3][0-9]')
+}
+
+export function dateTimeMatch(dt: string) {
+    return dt.match('20[0-9]{2}-[0-1][0-9]-[0-3][0-9] [0-2][0-9]:[0-6][0-9]:[0-6][0-9]')
+}
