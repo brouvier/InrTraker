@@ -1,4 +1,10 @@
-<h1>Liste des mesures d'INR</h1>
+<div class="d-flex justify-content-between">
+    <h1>Liste des mesures d'INR</h1>
+    <button type="button" class="btn btn-primary d-flex align-items-center" title="Ajouter une mesure"
+        data-bs-toggle="modal" data-bs-target="#editInrModal" (click)="add()">
+        <i class="material-icons">add_circle_outline</i>
+    </button>
+</div>
 
 <table class="table table-sm table-hover">
     <thead class="">
@@ -11,16 +17,16 @@
     </thead>
     <tbody>
         <tr *ngFor="let inr of inrMeasures">
-            <td>{{inr.measureDate}}</td>
-            <td>{{inr.inr}}</td>
-            <td>{{inr.comment}}</td>
-            <td class="text-end">
+            <td class="align-middle">{{inr.measureDate}}</td>
+            <td class="align-middle">{{inr.inr}}</td>
+            <td class="align-middle">{{inr.comment}}</td>
+            <td class="align-middle text-end">
                 <div class="btn-group" role="group">
-                    <button type="button" class="btn btn-primary" title="Modifier" data-bs-toggle="modal"
+                    <button type="button" class="btn btn-primary btn-sm d-flex align-items-center" title="Modifier" data-bs-toggle="modal"
                         data-bs-target="#editInrModal" (click)="edit(inr)">
                         <i class="material-icons">edit</i>
                     </button>
-                    <button type="button" class="btn btn-danger" title="Supprimer" (click)="remove(inr)">
+                    <button type="button" class="btn btn-danger btn-sm d-flex align-items-center" title="Supprimer" (click)="remove(inr)">
                         <i class="material-icons">delete</i>
                     </button>
                 </div>

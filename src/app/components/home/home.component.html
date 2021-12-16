@@ -5,11 +5,18 @@
         <div class="card m-3">
             <h3 class="card-header">{{drug.label}}</h3>
             <div class="card-body">
-                <p class="card-text text-success" *ngIf="nextIntake(drug) <= formatedCurrentDt"><strong>Prise autorisée</strong></p>
+                <p class="card-text text-success" *ngIf="nextIntake(drug) <= formatedCurrentDt">
+                    <strong>Prise autorisée</strong>
+                </p>
                 <div *ngIf="nextIntake(drug) > formatedCurrentDt">
-                    <p class="card-text text-warning">
-                        <strong>Prochaine prise autorisée : {{nextIntake(drug)}}</strong>
-                    </p>
+                    <div class="row card-text text-warning">
+                        <div class="col-12 col-xl-6">
+                            <strong>Prochaine prise autorisée :</strong>
+                        </div>
+                        <div class="col-12 col-xl-6 text-end">
+                            <strong>{{nextIntake(drug)}}</strong>
+                        </div>
+                    </div>
                     <div class="progress">
                         <div class="progress-bar" role="progressbar" [style]="nextIntakeProgress(drug)"></div>
                     </div>
@@ -17,12 +24,13 @@
             </div>
             <div class="card-footer text-end">
                 <div class="btn-group" role="group">
-                    <button type="button" class="btn btn-success" title="Ajouter une prise" (click)="addIntake(drug.id)"
+                    <button type="button" class="btn btn-success d-flex align-items-center" title="Ajouter une prise"
+                        (click)="addIntake(drug.id)"
                         [ngClass]="{'btn-warning': nextIntake(drug) > formatedCurrentDt,
                                 'btn-success': nextIntake(drug) <= formatedCurrentDt}">
                         <i class="material-icons">healing</i>
                     </button>
-                    <a class="btn btn-secondary" [routerLink]="['/intake-list', drug.id]"
+                    <a class="btn btn-secondary d-flex align-items-center" [routerLink]="['/intake-list', drug.id]"
                         title="Voir la liste des prises"><i class="material-icons">reorder</i></a>
                 </div>
             </div>
@@ -32,15 +40,15 @@
 
 <hr />
 
-<h2>Suivi de l'INR</h2>
-
-<div echarts [options]="inrGraphOptions" [merge]= "inrGraphUpdateOptions" class="demo-chart"></div>
-
-<div class="text-end" style="width: 100%;">
-    <a class="btn btn-secondary" [routerLink]="['/measure-list']" title="Voir la liste des mesures">
+<div class="d-flex justify-content-between">
+    <h2>Suivi de l'INR</h2>
+    <a class="btn btn-secondary d-flex align-items-center" [routerLink]="['/measure-list']"
+        title="Voir la liste des mesures">
         <i class="material-icons">reorder</i>
     </a>
 </div>
+
+<div echarts [options]="inrGraphOptions" [merge]="inrGraphUpdateOptions" class="demo-chart"></div>
 
 <div *ngIf="!production">
     <hr />

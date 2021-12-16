@@ -58,13 +58,20 @@ export class INRService {
         });
     }
 
-    editInrMeasure(inrMeasure: InrMeasure) {
-        this.logger.debug('Edition d\'une mesure', inrMeasure);
+    saveInrMeasure(inrMeasure: InrMeasure) {
+        this.logger.debug('Sauvegarde d\'une mesure', inrMeasure);
 
-        this.updateInrMeasure(inrMeasure).subscribe({
-            next: response => this.refresh(),
-            error: error => this.logger.error('updateInrMeasure error', error)
-        });
+        if(inrMeasure.id == 0){
+            this.insertNewInrMeasure(inrMeasure).subscribe({
+                next: response => this.refresh(),
+                error: error => this.logger.error('saveInrMeasure insert error', error)
+            });
+        } else {
+            this.updateInrMeasure(inrMeasure).subscribe({
+                next: response => this.refresh(),
+                error: error => this.logger.error('saveInrMeasure update error', error)
+            });
+        }
     }
 
     private selectInrMeasure() { return this.httpClient.get<InrMeasure[]>(this.inrMeasureUrl, { headers: this.security.getAppTocken() }) }

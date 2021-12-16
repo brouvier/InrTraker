@@ -24,7 +24,7 @@
                 <div class="form-floating mb-3">
                     <input id="comment" type="text" class="form-control"
                     [(ngModel)]="modalInrMeasure.comment" [ngModelOptions]="{standalone: true}" />
-                    <label for="comment">Date</label>
+                    <label for="comment">Commentaire</label>
                 </div>
 
                 <pre *ngIf="!production">{{modalInrMeasure | json}}</pre>
@@ -32,7 +32,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
-                <button type="button" class="btn btn-primary" *ngIf="checkDate()" (click)="save()">Modifier</button>
+                <button type="button" class="btn btn-primary" *ngIf="checkDate()" (click)="save()">Sauvegarder</button>
             </div>
         </div>
     </div>

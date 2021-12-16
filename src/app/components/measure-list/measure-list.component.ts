@@ -26,6 +26,10 @@ export class MeasureListComponent implements OnInit, OnDestroy {
     this.measuresSub!.unsubscribe();
   }
 
+  add(){
+    this.inrServ.setModalMeasure(INRService.EMPTY_INR_MEASURE)
+  }
+
   edit(inr: InrMeasure){
     this.inrServ.setModalMeasure(inr)
   }

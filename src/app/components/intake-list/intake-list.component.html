@@ -9,15 +9,15 @@
     </thead>
     <tbody>
         <tr *ngFor="let intake of currentDrugIntakes">
-            <td>{{intake.intake}}</td>
-            <td class="text-end">
+            <td class="align-middle">{{intake.intake}}</td>
+            <td class="align-middle text-end">
                 <div class="btn-group" role="group">
-                    <button type="button" class="btn btn-primary" title="Modifier"
+                    <button type="button" class="btn btn-primary btn-sm d-flex align-items-center" title="Modifier"
                         data-bs-toggle="modal" data-bs-target="#editIntakeModal"
                         (click)="editIntake(intake)">
                         <i class="material-icons">edit</i>
                     </button>
-                    <button type="button" class="btn btn-danger" title="Supprimer"
+                    <button type="button" class="btn btn-danger btn-sm d-flex align-items-center" title="Supprimer"
                         (click)="removeIntake(intake)">
                         <i class="material-icons">delete</i>
                     </button>

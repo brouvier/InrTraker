@@ -36,7 +36,7 @@ export class ModalEditInrComponent implements OnInit, OnDestroy {
   }
 
   save(){
-    this.inrServ.editInrMeasure(this.modalInrMeasure);
+    this.inrServ.saveInrMeasure(this.modalInrMeasure);
     $("#editInrModal").modal("hide");
   }
 
