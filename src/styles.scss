@@ -12,7 +12,8 @@ app-root {
 
 nav {
   height: 60px;
-  background-color: #8143aa;
+  // background-color: #8143aa;
+  background: linear-gradient(to right, #8143aa, #d1b6e4) !important;
 }
 
 main {
@@ -31,4 +32,8 @@ main {
 }
 .navbar-brand span {
   font-size: 2.5rem;
+}
+
+.violet {
+  color: #8143aa;
 }

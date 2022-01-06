@@ -24,6 +24,7 @@ CREATE TABLE IF NOT EXISTS `drug` (
   `label` varchar(50) NOT NULL,
   `posology` varchar(500) NOT NULL,
   `maxFrequency` tinyint(3) unsigned NOT NULL DEFAULT 1 COMMENT 'Fréquence maximum des prises en heure',
+	`order` TINYINT(4) NOT NULL DEFAULT '9',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 

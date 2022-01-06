@@ -15,7 +15,7 @@ export class IntakeListComponent implements OnInit, OnDestroy {
   private currentDrugId: number = 0;
   private drugsSub: Subscription|undefined;
   private intakesSub: Subscription|undefined;
-  currentDrug: Drug = {id: 0, label: 'Erreur', posology: '', maxFrequency: 0};
+  currentDrug: Drug = {id: 0, label: 'Erreur', posology: '', maxFrequency: 0, order: 0};
   currentDrugIntakes: DrugIntake[] = [];
 
 

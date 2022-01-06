@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { max, min, reduce, Subscription } from 'rxjs';
+import { max, min, reduce, Subscription, timer } from 'rxjs';
 import { DrugService, LastDrugIntake } from 'src/app/services/drug.service';
 import { InrMeasure, INRService } from 'src/app/services/inr.service';
 import { LogService } from 'src/app/services/log.service';
@@ -9,28 +9,32 @@ import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styles: [
-  ]
+  styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit, OnDestroy {
 
   production = environment.production;
   lastIntakesSub: Subscription | undefined;
   inrMeasuresSub: Subscription | undefined;
+  timerSub: Subscription | undefined;
   lastIntakes: LastDrugIntake[] = [];
-  currentDt = new Date();
-  formatedCurrentDt = formatDateTime(new Date());
+  currentDt = {dt: new Date(), st: formatDateTime(new Date())};
 
   constructor(private logger: LogService, private drugs: DrugService, private inr: INRService) { }
 
   ngOnInit(): void {
     this.lastIntakesSub = this.drugs.getLastIntakes().subscribe(next => this.lastIntakes = next);
     this.inrMeasuresSub = this.inr.getInrMeasures().subscribe(next => this.formatGraphData(next));
+    this.timerSub = timer(0, 60000).subscribe(next => {
+      this.currentDt.dt = new Date();
+      this.currentDt.st = formatDateTime(new Date());
+    });
   }
 
   ngOnDestroy(): void {
     this.lastIntakesSub!.unsubscribe();
-    this.inrMeasuresSub!.unsubscribe;
+    this.inrMeasuresSub!.unsubscribe();
+    this.timerSub!.unsubscribe();
   }
 
   nextIntake(dIntake: LastDrugIntake): string {
@@ -39,12 +43,18 @@ export class HomeComponent implements OnInit, OnDestroy {
     return addHours(dIntake.lastIntake!, dIntake.maxFrequency);
   }
 
+  lastIntake(dIntake: LastDrugIntake): string {
+    if (dIntake.lastIntake == null)
+      return '';
+    return formatDateTime(new Date(dIntake.lastIntake));
+  }
+
   nextIntakeProgress(dIntake: LastDrugIntake): string {
     var pct = 0;
 
     if (dIntake.lastIntake != null){
       const d = new Date(dIntake.lastIntake);
-      pct = Math.round((this.currentDt.getTime() - d.getTime()) / (dIntake.maxFrequency*60*60*1000) * 100);
+      pct = Math.round((this.currentDt.dt.getTime() - d.getTime()) / (dIntake.maxFrequency*60*60*1000) * 100);
     }
     return "width: ".concat(pct.toString()).concat('%');
   }

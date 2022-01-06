@@ -11,6 +11,7 @@ export interface Drug {
     label: string;
     posology: string;
     maxFrequency: number;
+    order: number;
 }
 
 export interface DrugIntake {
@@ -25,6 +26,7 @@ export interface LastDrugIntake {
     lastIntake: string | null;
     posology: string;
     maxFrequency: number;
+    order: number;
 }
 
 @Injectable()
@@ -101,12 +103,12 @@ export class DrugService {
         });
     }
 
-    private selectDrug() { return this.httpClient.get<Drug[]>(this.drugUrl, {headers: this.security.getAppTocken()}) }
+    private selectDrug() { return this.httpClient.get<Drug[]>(this.drugUrl + '/?by=order', {headers: this.security.getAppTocken()}) }
     private insertNewDrug(drug: Drug) { return this.httpClient.post(this.drugUrl, drug, {headers: this.security.getAppTocken()}) }
     private updateDrug(drug: Drug) { return this.httpClient.put(this.drugUrl + drug.id, drug, {headers: this.security.getAppTocken()}) }
     private deleteDrug(drug: Drug) { return this.httpClient.delete(this.drugUrl + drug.id, {headers: this.security.getAppTocken()}) }
 
-    private selectDrugIntake() { return this.httpClient.get<DrugIntake[]>(this.drugIntakeUrl, {headers: this.security.getAppTocken()}) }
+    private selectDrugIntake() { return this.httpClient.get<DrugIntake[]>(this.drugIntakeUrl + '/?by=intake', {headers: this.security.getAppTocken()}) }
     private insertNewDrugIntake(drugIntake: DrugIntake) { return this.httpClient.post(this.drugIntakeUrl, drugIntake, {headers: this.security.getAppTocken()}) }
     private updateDrugIntake(drugIntake: DrugIntake) { return this.httpClient.put(this.drugIntakeUrl + drugIntake.id, drugIntake, {headers: this.security.getAppTocken()}) }
     private deleteDrugIntake(drugIntake: DrugIntake) { return this.httpClient.delete(this.drugIntakeUrl + drugIntake.id, {headers: this.security.getAppTocken()}) }

@@ -74,7 +74,7 @@ export class INRService {
         }
     }
 
-    private selectInrMeasure() { return this.httpClient.get<InrMeasure[]>(this.inrMeasureUrl, { headers: this.security.getAppTocken() }) }
+    private selectInrMeasure() { return this.httpClient.get<InrMeasure[]>(this.inrMeasureUrl + '/?by=measureDate', { headers: this.security.getAppTocken() }) }
     private insertNewInrMeasure(inrMeasure: InrMeasure) { return this.httpClient.post(this.inrMeasureUrl, inrMeasure, { headers: this.security.getAppTocken() }) }
     private updateInrMeasure(inrMeasure: InrMeasure) { return this.httpClient.put(this.inrMeasureUrl + inrMeasure.id, inrMeasure, { headers: this.security.getAppTocken() }) }
     private deleteInrMeasure(inrMeasure: InrMeasure) { return this.httpClient.delete(this.inrMeasureUrl + inrMeasure.id, { headers: this.security.getAppTocken() }) }

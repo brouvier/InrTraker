@@ -1,0 +1,44 @@
+ /* https://www.bootdey.com/snippets/view/bs4-card-widget#html */
+.card {
+    color: #fff;
+    border-radius: 10px;
+    border: none;
+    /* TODO : A affiner */
+    box-shadow: 0 0.46875rem 2.1875rem rgb(90 97 105 / 10%), 0 0.9375rem 1.40625rem rgb(90 97 105 / 10%), 0 0.25rem 0.53125rem rgb(90 97 105 / 12%), 0 0.125rem 0.1875rem rgb(90 97 105 / 10%);
+}
+
+.custom-card-green {
+    background: linear-gradient(to right, #0a504a, #38ef7d) !important;
+}
+
+.custom-card-orange {
+    background: linear-gradient(to right, #a86008, #ffba56) !important;
+}
+
+
+
+/////////////////////////////////////////////////////////////////////////
+
+.progress {
+    height: 6px;
+    overflow: visible;
+    margin-top: 5px
+}
+
+.progress-bar {
+    position: relative;
+    overflow: visible;
+    border-radius: 0.25rem 0 0 0.25rem;
+}
+
+.progress-bar:after {
+    content: "";
+    position: absolute;
+    right: -6px;
+    top: -4px;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    border: 3px solid #0d6efd;
+    background: #fff;
+}
